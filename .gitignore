@@ -1,0 +1,23 @@
+# Variáveis de Ambiente
+.env
+*.env.local
+
+# Back-end (Maven / Gradle / IDEs)
+target/
+build/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Front-end (Node / Angular)
+node_modules/
+dist/
+.angular/
+
+# IDEs & OS
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+

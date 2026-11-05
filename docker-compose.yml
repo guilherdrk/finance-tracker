@@ -1,0 +1,6 @@
+# TODO (Dia 1): Configurar serviço do PostgreSQL 16+ (alpine)
+# Requisitos:
+# - Volume nomeado para persistir dados
+# - Variáveis referenciando o arquivo .env
+# - Healthcheck usando pg_isready
+
