@@ -1,6 +1,22 @@
-# TODO (Dia 1): Configurar serviço do PostgreSQL 16+ (alpine)
-# Requisitos:
-# - Volume nomeado para persistir dados
-# - Variáveis referenciando o arquivo .env
-# - Healthcheck usando pg_isready
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: finance-tracker-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-finance_tracker}
+      POSTGRES_USER: ${POSTGRES_USER:-finance_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-finance_pass}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-finance_user} -d $${POSTGRES_DB:-finance_tracker}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
+volumes:
+  postgres_data:
